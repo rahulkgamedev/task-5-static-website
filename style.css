@@ -1,0 +1,176 @@
+/* ---------- Tokens ---------- */
+:root {
+  --mist: #e8efeb;
+  --paper: #f6f9f7;
+  --pine: #17342e;
+  --moss: #4f6f64;
+  --signal: #e8601c;
+  --line: #c3d1ca;
+
+  --font-head: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Literata", Georgia, "Times New Roman", serif;
+
+  --step--1: 0.9rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.35rem;
+  --step-2: 1.9rem;
+  --step-3: clamp(2.4rem, 5vw + 1rem, 4.4rem);
+
+  --radius: 6px;
+  --measure: 62ch;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+
+body {
+  margin: 0;
+  background: var(--mist);
+  color: var(--pine);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6em;
+}
+
+p { margin: 0 0 1em; max-width: var(--measure); }
+ul, ol, dl { margin: 0; padding: 0; }
+a { color: inherit; text-decoration-color: var(--signal); text-underline-offset: 0.2em; text-decoration-thickness: 2px; }
+a:hover { color: var(--signal); }
+
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 2px; }
+
+.skip {
+  position: absolute; left: 1rem; top: -4rem;
+  background: var(--pine); color: var(--paper);
+  padding: 0.6rem 1rem; border-radius: var(--radius); z-index: 20;
+}
+.skip:focus { top: 1rem; color: var(--paper); }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding: 0.9rem clamp(1.25rem, 5vw, 4rem);
+  background: var(--mist);
+  border-bottom: 1px solid var(--line);
+}
+.brand { margin: 0; font-family: var(--font-head); font-weight: 800; font-size: var(--step-1); letter-spacing: -0.02em; }
+.site-header ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; list-style: none; }
+.site-header nav a { font-family: var(--font-head); font-weight: 500; font-size: var(--step--1); text-decoration: none; padding: 0.25rem 0; }
+.site-header nav a:hover { text-decoration: underline; text-decoration-color: var(--signal); text-decoration-thickness: 2px; text-underline-offset: 0.35em; }
+
+/* ---------- Layout ---------- */
+main { padding: 0 clamp(1.25rem, 5vw, 4rem); max-width: 72rem; margin: 0 auto; }
+
+.hero { padding: clamp(3rem, 9vw, 7rem) 0 clamp(2.5rem, 6vw, 4.5rem); }
+.hero h1 { font-size: var(--step-3); font-weight: 800; max-width: 16ch; }
+.lead { font-size: var(--step-1); line-height: 1.55; max-width: 44ch; color: var(--moss); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+.button {
+  display: inline-block;
+  font-family: var(--font-head); font-weight: 700; font-size: var(--step--1);
+  padding: 0.8rem 1.4rem;
+  background: var(--pine); color: var(--paper);
+  border: 2px solid var(--pine); border-radius: var(--radius);
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.button:hover { background: var(--signal); border-color: var(--signal); color: var(--paper); }
+.button-quiet { background: transparent; color: var(--pine); }
+
+.section { padding: clamp(2.5rem, 6vw, 4.5rem) 0; border-top: 1px solid var(--line); }
+.section h2 { font-size: var(--step-2); max-width: 22ch; }
+.section-intro { color: var(--moss); margin-bottom: 2rem; }
+
+/* ---------- Pipeline ---------- */
+.pipeline {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.pipeline li {
+  position: relative;
+  padding: 1.75rem 1.5rem 0.5rem 0;
+}
+/* the track the stages sit on */
+.pipeline li::before {
+  content: "";
+  position: absolute; left: 0; right: 0; top: 0.5rem;
+  height: 2px; background: var(--moss);
+}
+.pipeline li::after {
+  content: "";
+  position: absolute; left: 0; top: 0;
+  width: 0.9rem; height: 0.9rem;
+  background: var(--signal); border-radius: 50%;
+}
+.pipeline h3 { font-size: var(--step-1); margin-bottom: 0.3em; }
+.pipeline p { font-size: var(--step--1); line-height: 1.6; margin: 0; }
+
+/* ---------- Projects ---------- */
+.project {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--signal);
+  border-radius: var(--radius);
+  padding: 1.75rem clamp(1.25rem, 3vw, 2.25rem);
+  margin-bottom: 1.25rem;
+}
+.project h3 { font-size: var(--step-1); margin-bottom: 0.15em; }
+.meta { font-family: var(--font-head); font-size: var(--step--1); color: var(--moss); margin-bottom: 0.9rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin-top: 1.1rem; }
+.tags li {
+  font-family: var(--font-head); font-weight: 500; font-size: 0.8rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--moss); border-radius: 999px;
+}
+
+/* ---------- Certifications ---------- */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.5rem; }
+.facts div { border-top: 3px solid var(--pine); padding-top: 0.9rem; }
+.facts dt { font-family: var(--font-head); font-weight: 700; font-size: var(--step-1); line-height: 1.2; }
+.facts dd { margin: 0.35rem 0 0; color: var(--moss); font-size: var(--step--1); }
+
+/* ---------- Contact ---------- */
+.contact-list { list-style: none; display: grid; gap: 0.4rem; font-family: var(--font-head); font-weight: 500; font-size: var(--step-1); }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: 2rem;
+  padding: 1.5rem clamp(1.25rem, 5vw, 4rem);
+  border-top: 1px solid var(--line);
+  font-size: var(--step--1); color: var(--moss);
+}
+.site-footer p { margin: 0 auto; max-width: 72rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 52rem) {
+  /* pipeline turns vertical on narrow screens */
+  .pipeline { grid-template-columns: 1fr; }
+  .pipeline li { padding: 0 0 1.75rem 2rem; }
+  .pipeline li::before { left: 0.4rem; right: auto; top: 0.5rem; bottom: 0; width: 2px; height: auto; }
+  .pipeline li:last-child::before { bottom: auto; height: 0.5rem; }
+  .pipeline li::after { top: 0.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .button { transition: none; }
+}
+
+@media print {
+  .site-header, .skip, .actions { display: none; }
+  body { background: #fff; }
+}
